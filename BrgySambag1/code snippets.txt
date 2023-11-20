@@ -1,0 +1,18 @@
+<html>
+    <body>
+        <h2 class="user">
+            <a href="">LOGOUT</a>
+            <?php echo $currentuser; ?> <--
+        </h2>
+    </body>
+</html>
+
+Admin Account:
+User: BrgyAdmin
+Pass: @Administrator09
+
+How to join:
+SELECT * from users INNER JOIN docreq on users.id = docreq.id;
+
+Joining with specific columns:
+SELECT u.id, concat(u.firstname, ' ', u.lastname) AS name, u.address, d.document, d.reference, d.status from users u INNER JOIN docreq d on u.id = d.id;

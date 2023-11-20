@@ -1,0 +1,74 @@
+<?php
+include 'connection.php';
+session_start();
+
+echo("
+        <a href='index.php'>
+            <img src='drawable/Logo.png' alt='img'  class='home-logo'>
+        </a>
+        <div class='toggle_container'>
+            <input type='checkbox' id='menuToggle'>
+            <label for='menuToggle' id='menuButton'>☰</label>
+            <div class='nav' id='nav'>
+");
+
+//sees if logged in is defined or not, if it is not, it will ignore the warning
+if(isset($_SESSION['loggedin']) && $_SESSION['loggedin']){
+    $currentuser = $_SESSION['username'];
+    $name = $_SESSION['name'];
+    $id = $_SESSION['id'];
+    $privilege = $_SESSION['privilege'];
+
+    if(!$privilege){
+        //for normal registered users
+        echo "
+                <a href='index.php#one'>HOME</a>
+                <a href='news.php'>NEWS</a>
+                <a href='officials.php'>OFFICIALS</a>
+                <a href='commDtb.php'>COMMITTEES</a>
+                <a href='about.php'>BARANGAY INFORMATION</a>
+                <a href='contactDtb.php'>CONTACT INFORMATION</a>
+                <a href='myDocReq.php'>MY_REQUESTS</a>
+                <a href='profile.php'>PROFILE</a>
+                <a href='myDocReq.php'>ABOUT</a>
+                <a href='logout.php'>LOGOUT</a>";
+    }else{
+        //for administrator
+        echo "
+            <a href='index.php#one'>HOME</a>
+            <a href='news.php'>NEWS</a>
+            <a href='officials.php'>OFFICIALS</a>
+            <a href='commDtb.php'>COMMITTEES</a>
+            <a href='about.php'>BARANGAY INFORMATION</a>
+            <a href='contactDtb.php'>CONTACT INFORMATION</a>
+            <a href='documentDtb.php'>DOCUMENTS</a>
+            <a href='docreqDtb.php'>DOCUMENT REQUESTS</a>
+            <a href='database.php'>DATABASE</a>
+            <a href='logout.php'>LOGOUT</a>";
+    }
+}else{
+    //for users who are not logged in
+    echo "
+        <a href='login.php'>LOGIN/REGISTER</a>
+        <a href='index.php#one'>HOME</a>
+        <a href='news.php'>NEWS</a>
+        <a href='officials.php'>OFFICIALS</a>
+        <a href='index.php#two'>ABOUT</a>
+        <a href='contactDtb.php'>CONTACT INFORMATION</a>
+    ";
+}
+
+//close the menu when clicking anywhere inside nav
+echo("</div></div>
+
+<script>
+document.getElementById('nav').addEventListener('click', function (event) {
+    if (event.target !== this) {
+        return; // Clicking on an element inside nav, don't close the menu
+    }
+    document.getElementById('menuToggle').checked = false; //Toggles off the menu
+});
+</script>
+")
+
+?>
