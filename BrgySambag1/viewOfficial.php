@@ -17,11 +17,9 @@
     $img = $info['OfficialPic'];
 
     if (isset($_POST["submit"])) {
-        // Retrieve data from the form
         $committeeID = $_POST['committee'];
         $position = $_POST['position'];
     
-        // Insert the official into the committee
         $insertSql = "INSERT INTO tblofficialcom (OfficialID, CommID, comPosition) 
                       VALUES ('$id', '$committeeID', '$position')";
     
@@ -63,7 +61,6 @@
                         if($row_count == 0){
                             echo "<option disabled>No Available Committees</option>";
                         }else{
-                            // Fetch a list of committees from the database and populate the dropdown
                             $committeeSql = "SELECT c.CommID, c.CommName
                                         FROM tblcomm c
                                         LEFT JOIN tblofficialcom oc ON c.CommID = oc.CommID AND oc.OfficialID = $id
@@ -164,6 +161,9 @@
         ?>
     </div>
 
+<?php include 'nav/footer.php'; ?>
+
+</body>
     <script>
             document.addEventListener("DOMContentLoaded", function () {
                 const toggleButton = document.getElementById("toggleAdd");
@@ -183,7 +183,4 @@
                 });
             });
         </script>
-<?php include 'nav/footer.php'; ?>
-
-</body>
 </html>
