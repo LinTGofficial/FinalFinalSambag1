@@ -1,7 +1,13 @@
 <?php
     require 'connection.php';
-    require 'checkuser.php';
     $popId = $_GET["id"];
+
+    if(!$_SESSION['privilege']){
+      header("Location: index.php");
+      die;
+    }else{
+        include 'checkuser.php';
+    }
 
     $sql = "SELECT * FROM tblbrgyinfo b INNER JOIN tblpopulation p on b.InfoID = p.InfoID WHERE p.PopID = $popId;";
     $result = mysqli_query($conn, $sql);
@@ -18,9 +24,7 @@
     $psgcCode = $info['PSGC CODE'];
     $psgcClass = $info['PSGC Class'];
     
-    //update function
     if(isset($_POST["submit"])){
-        //updated data
         $newbrgyName = $_POST['name'];
         $newgeographic = $_POST['geographic'];
         $newlegislative = $_POST['legislative'];

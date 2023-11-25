@@ -1,6 +1,11 @@
 <?php
     require 'connection.php';
-    include 'checkuser.php';
+    if(!$_SESSION['privilege']){
+        header("Location: index.php");
+        die;
+      }else{
+          include 'checkuser.php';
+      }
     $id = $_GET["id"];
 
     $sql = "SELECT * FROM users WHERE id = '$id'";
