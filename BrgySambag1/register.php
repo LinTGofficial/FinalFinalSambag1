@@ -102,7 +102,7 @@ function generateToken(){
           <label for="lastname"> Name:</label>
           <input class="mb-1 font-lg" type="text" name="lastname" placeholder="Last Name" class="address" required><br>
           <input class="mb-1 font-lg" type="text" name="firstname" placeholder="First Name" class="address" required><br>
-          <input class="mb-1 font-lg" type="text" name="middlename" placeholder="Middle Name" class="address"><br>
+          <input class="mb-1 font-lg" type="text" name="middlename" placeholder="Middle Name                                   (optional)" class="address"><br>
           <input class="mb-3 font-lg" type="number" name="age" placeholder="Age" required><br>
           <label for="lastname"> Address:</label>
           <input class="mb-1 font-lg" type="text" name="city" placeholder="City" class="address" required><br>
