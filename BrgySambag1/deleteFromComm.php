@@ -4,7 +4,7 @@
     $offCommId = $_GET["offCommId"];
     $query = "DELETE FROM tblofficialcom WHERE OfficialCommID = '$offCommId'";
     if (mysqli_query($conn, $query)) {
-        echo "<script> window.history.back() </script>";
+        header("location: viewOfficial.php?id=" . $id);
         die;
     } else {
          echo "Something went wrong. Please try again later.";

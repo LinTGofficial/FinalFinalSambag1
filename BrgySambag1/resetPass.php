@@ -27,24 +27,17 @@ if($rowcount != 1){
 
 if(isset($_POST["submit"])){
   $newpass = $_POST['pass'];
-  $confirmpass = $_POST['confirm'];
 
-  if($newpass == $confirmpass){
-    $sql2 = "UPDATE users SET `password`= md5('$newpass') WHERE id = $userID";
-    if(mysqli_query($conn, $sql2)){
-      $deletesql = "DELETE FROM tbltoken WHERE token = '$token'";
-      $deletequery = mysqli_query($conn, $deletesql);
-      echo "<script>alert('Password changed successfully');
-        window.location.href='login.php';</script>";
-    }else{
-      echo "<script>alert('Something went wrong');
-        window.location.href='index.php';</script>";
-    }
-
-  }else {
-    echo "<script>alert('Password did not match');</script>";
+  $sql2 = "UPDATE users SET `password`= md5('$newpass') WHERE id = $userID";
+  if(mysqli_query($conn, $sql2)){
+    $deletesql = "DELETE FROM tbltoken WHERE token = '$token'";
+    $deletequery = mysqli_query($conn, $deletesql);
+    echo "<script>alert('Password changed successfully');
+      window.location.href='login.php';</script>";
+  }else{
+    echo "<script>alert('Something went wrong');
+      window.location.href='index.php';</script>";
   }
-
 }
 
 ?>
@@ -78,7 +71,7 @@ if(isset($_POST["submit"])){
                 }
               </script>
             <label for="confirmpass"> Confirm Password: </label>
-            <input type="password" name="confirm" placeholder="Re-enter Password" required><br>
+            <input type="password" name="confirmpass" placeholder="Re-enter Password" required><br>
             
             <button type="submit" name="submit" class="btn_primary"> Reset Password </button><br>
           </div>

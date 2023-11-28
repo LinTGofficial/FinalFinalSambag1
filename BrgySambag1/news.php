@@ -1,5 +1,4 @@
 <?php
-//preventign warnings for unlogged in users
 // error_reporting(E_ERROR | E_PARSE);
 
 include 'connection.php';
@@ -15,32 +14,25 @@ if (isset($_POST['submit'])) {
     $description = $_POST['description'];
     $category = $_POST['category'];
 
-    // Move the uploaded file to a folder
     move_uploaded_file($_FILES['image']['tmp_name'], 'uploads/' . $img);
 
-    // Insert the post into the database
     $sql = "INSERT INTO uploads VALUES ('', '$id', '$date', '$img', '$title', '$description', '$category')";
     mysqli_query($conn, $sql);
 }
 
-//filter function
 $selectedCategory = '';
 
-// Handle form submission for category filtering
 if (isset($_POST['submit2'])) {
     $selectedCategory = $_POST['categoryFilter'];
 
-    // Modify the SQL query to include the category filter
     $sql2 = "SELECT * FROM uploads";
     if (!empty($selectedCategory)) {
         $sql2 .= " WHERE category = '$selectedCategory' ";
     }
     $sql2 .= " ORDER BY uploadId DESC";
 
-    // Execute the query with the category filter
     $result2 = mysqli_query($conn, $sql2);
 } else {
-    // If the form is not submitted, fetch all posts
     $sql2 = "SELECT * FROM uploads ORDER BY uploadId DESC";
     $result2 = mysqli_query($conn, $sql2);
 }
@@ -58,7 +50,7 @@ if (isset($_POST['submit2'])) {
     <?php
         if(isset($privilege) && $privilege){
             ?>
-            <!-- actions -->
+            <!-- admin actions -->
             
             <div class="newsbody" id="newsbody">
                 <div class="upload" id="upload">
@@ -107,7 +99,7 @@ if (isset($_POST['submit2'])) {
         </script>
 
 
-        <!-- Display all the posted posts -->
+        <!-- the posts -->
         <div class="off-title mt-3">
         <h1 class="mt-3 text-secondary font-xxl">News and Announcements</h1>
         </div>

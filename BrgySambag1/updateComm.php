@@ -1,13 +1,7 @@
 <?php
     require 'connection.php';
+    require 'checkuser.php';
     $Commid = $_GET["id"];
-
-    if(!$_SESSION['privilege']){
-      header("Location: index.php");
-      die;
-    }else{
-        include 'checkuser.php';
-    }
 
     $sql = "SELECT * FROM tblcomm WHERE CommID = '$Commid';";
     $result = mysqli_query($conn, $sql);

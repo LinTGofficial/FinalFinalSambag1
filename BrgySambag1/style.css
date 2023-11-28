@@ -1021,7 +1021,7 @@
   height: 100%;
   width: 100%;
   background: rgba(0, 0, 0, 0.5);
-  z-index: 2;
+  z-index: 1;
 }
 
 .upload input[type=submit] {
@@ -1037,7 +1037,7 @@
   right: 10px;
   cursor: pointer;
   padding: 5px;
-  color: gray;
+  color: white;
 }
 
 .actions-news {
@@ -1359,7 +1359,7 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  color: rgb(75, 73, 73);;
+  color: rgb(75, 73, 73);
   width: fit-content;
   height: fit-content;
   min-width: 50%;

@@ -1,11 +1,6 @@
 <?php
     require 'connection.php';
-    if(!$_SESSION['privilege']){
-      header("Location: index.php");
-      die;
-    }else{
-        include 'checkuser.php';
-    }
+    require 'checkuser.php';
     $id = $_GET["id"];
 
     $sql = "SELECT * FROM tbldocument WHERE docID = ".$id;
