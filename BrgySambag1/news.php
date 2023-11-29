@@ -20,6 +20,7 @@ if (isset($_POST['submit'])) {
     mysqli_query($conn, $sql);
 }
 
+//for category
 $selectedCategory = '';
 
 if (isset($_POST['submit2'])) {

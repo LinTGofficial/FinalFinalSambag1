@@ -7,13 +7,10 @@
     $result = mysqli_query($conn, $sql);
     $doc = mysqli_fetch_array($result, MYSQLI_ASSOC);
 
-    //setting variables
     $docname = $doc["docName"];
     $price = $doc["price"];
 
-    //update function
     if(isset($_POST["submit"])){
-        //updated data
         $newDocName = $_POST["docName"];
         $newPrice = $_POST["price"];
 
@@ -43,7 +40,7 @@
         <label for="lastname"> Name:</label>
           <input type="text" name="docName" value="<?php echo $docname?>" placeholder="Last Name" required><br>
         <label for="sitio"> Price:</label>
-          <input type="number" name="price" id="address" value="<?php echo $price?>" placeholder="Sitio" required><br>
+          <input type="number" name="price" id="address" value="<?php echo $price?>" required><br>
         <button class="btn-primary text-white font-poppins-semibold" type="submit" name="submit"> Update </button><br>
         <a href="documentDtb.php"> Back </a>
     </div>

@@ -4,19 +4,16 @@
     $id = $_GET["id"];
     $back = '';
 
-    //getting data from uploads
     $sql = "SELECT * FROM uploads WHERE uploadId = $id;";
     $result = mysqli_query($conn, $sql);
     $news = mysqli_fetch_array($result, MYSQLI_ASSOC);
 
-    //setting variables
     $title = $news["title"];
     $img = $news["img"];
     $desc = $news["description"];
     $category = $news["category"];
 
     
-    //update function
     if(isset($_POST["submit"])){
         $newTitle = $_POST['title'];
         $newDesc = $_POST['description'];
@@ -28,7 +25,7 @@
             $sql = "UPDATE uploads SET `Title`= '$newTitle', `description`= '$newDesc', `category`= '$newCategory' WHERE uploadId =".$id;
             
             if($result = mysqli_query($conn, $sql)){
-                echo "<script> alert('Document Updated(No image detected)'); window.location.href = 'news.php' </script>";
+                echo "<script> alert('Document Updated(Image not changed)'); window.location.href = 'news.php' </script>";
             }else {
                 echo "Something went wrong. Please try again later.";
             }
@@ -39,14 +36,13 @@
             $sql = "UPDATE uploads SET `Title`= '$newTitle', `description`= '$newDesc', `category`= '$newCategory', `img`= '$newImg' WHERE uploadId =".$id;
 
             if($result = mysqli_query($conn, $sql)){
-                echo "<script> alert('Document Updated (image detected)'); window.location.href = 'news.php' </script>";
+                echo "<script> alert('Document Updated; window.location.href = 'news.php' </script>";
             }else {
                 echo "Something went wrong. Please try again later.";
             }
         }
     }
 
-        //updated data
         
 ?>
 
@@ -72,10 +68,10 @@
             <input type="text" name="title" id="title" value="<?php echo $title ?>" required>
             <label for="category">Category:</label>
             <select name="category" require>
-                <option selected value="<?php echo $category ?>">Select Category</option>
+                <option selected value="<?php echo $category ?>" style="display:none;"><?php echo $category ?></option>
                 <option value="News">News</option>
+                <option value="Activities">Activities</option>
                 <option value="Announcements">Announcements</option>
-                <option value="News">News</option>
             </select>
             <label class="mt-1">Description:</label>
             <textarea name="description" id="desc" required><?php echo $desc ?></textarea>

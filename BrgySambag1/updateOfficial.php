@@ -7,13 +7,11 @@
     $result = mysqli_query($conn, $sql);
     $off = mysqli_fetch_array($result, MYSQLI_ASSOC);
 
-    //setting variables 
     $name = $off["Name"];
     $position = $off["Position"];
     $term = $off["Term"];
 
     
-    //update function
     if(isset($_POST["submit"])){
         $newname = $_POST['name'];
         $newposition = $_POST['position'];
@@ -24,7 +22,8 @@
             $sql = "UPDATE tblofficials SET `Name`= '$newname', `Term`= '$newterm', `Position`= '$newposition' WHERE OfficialID =".$id;
             
             if($result = mysqli_query($conn, $sql)){
-                echo "<script> alert('Document Updated(No image detected)') </script>";
+                echo "<script> alert('Official Updated(Image not changed)');
+                    history.go(-2);</script>";
             }else {
                 echo "Something went wrong. Please try again later.";
             }
@@ -35,14 +34,13 @@
             $sql = "UPDATE tblofficials SET `Name`= '$newname', `Term`= '$newterm', `Position`= '$newposition', `OfficialPic`= '$img' WHERE OfficialID =".$id;
 
             if($result = mysqli_query($conn, $sql)){
-                echo "<script> alert('Document Updated (image detected)') </script>";
+                echo "<script> alert('Official Updated');
+                    history.back();</script>";
             }else {
                 echo "Something went wrong. Please try again later.";
             }
         }
     }
-
-        //updated data
         
 ?>
 

@@ -48,7 +48,7 @@ $username = $acc['username'];
 <!-- <?php include 'topnavs/topnavLoggedIn.html'?> -->
 <div class="mt-2 regContainer">
     <h1 class="abt-header">MY PROFILE</h1>
-    <div class="mt-7 pt-4 about-brgy">
+    <div class="mt-10 pt-4 about-brgy">
       <div class="about-ins">
         <div>
           <p>Account Id:</p>

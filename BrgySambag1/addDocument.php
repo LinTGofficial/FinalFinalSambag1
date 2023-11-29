@@ -8,17 +8,18 @@ if(isset($_POST["submit"])){
   $price = $_POST["price"];
 
   //checking if username is already taken
-  $sql = "SELECT * FROM tbldocument WHERE `docName` = '$documentName'";
+  $sql = "SELECT * FROM tbldocument WHERE `docName` = '$documentName' AND `Archive` = 0";
   $result = mysqli_query($conn, $sql);
   $rowcount = mysqli_num_rows($result);
   
   //preventing similar usernames
   if($rowcount>0){
-    echo"<script> alert('username is already taken'); </script>";
+    echo"<script> alert('Document already exists'); </script>";
   }else{
     $query = "INSERT INTO tbldocument VALUES('', '$documentName', $price, 0)";
     mysqli_query($conn, $query);
-    echo"<script> alert('Document added successfully!'); </script>";
+    echo"<script> alert('Document added successfully!');
+      history.go(-2);</script>";
     }
   }
 ?>

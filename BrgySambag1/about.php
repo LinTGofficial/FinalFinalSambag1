@@ -30,7 +30,7 @@ $psgcClass = $info['PSGC Class'];
 <div class="regContainer">
     <h1 class="abt-header">ABOUT THE BARANGAY</h1>
     <div class="about-brgy">
-            <div class="mt-7 about-ins">
+            <div class="mt-10 about-ins">
                 <div>
                     <p>BARANGAY NAME:</p>
                     <p>GEOGRAPHIC DISTRICT:</p>

@@ -7,19 +7,17 @@
     $result = mysqli_query($conn, $sql);
     $doc = mysqli_fetch_array($result, MYSQLI_ASSOC);
 
-    //setting variables
     $name = $doc["ContactName"];
     $contact = $doc["ContactInfo"];
 
-    //update function
     if(isset($_POST["submit"])){
-        //updated data
         $newName = $_POST["name"];
         $newContact = $_POST["contact"];
 
         $sql = "UPDATE tblbrgycontact SET `ContactName`= '$newName', `ContactInfo` = '$newContact' WHERE BrgyContactID =".$id;
         if($result = mysqli_query($conn, $sql)){
-            echo "<script> alert('Document Updated') </script>";
+            echo "<script> alert('Contact Updated')
+                history.go(-1)</script>";
         }else {
             echo "Something went wrong. Please try again later.";
        }}

@@ -2,11 +2,8 @@
     include 'connection.php';
     include 'checkuser.php';
 
-    //get id of the article
     $id = $_GET['id'];
     
-
-    // Retrieve all the posts from the database
     $sql = "SELECT * FROM tblofficials WHERE OfficialID = ". $id;
     $result = mysqli_query($conn, $sql);
     $info = mysqli_fetch_array($result, MYSQLI_ASSOC);
@@ -17,18 +14,17 @@
     $img = $info['OfficialPic'];
 
     if (isset($_POST["submit"])) {
-        // Retrieve data from the form
         $committeeID = $_POST['committee'];
         $position = $_POST['position'];
     
-        // Insert the official into the committee
         $insertSql = "INSERT INTO tblofficialcom (OfficialID, CommID, comPosition) 
                       VALUES ('$id', '$committeeID', '$position')";
     
         if (mysqli_query($conn, $insertSql)) {
-            echo"<script> alert('Successfully added into the committee') </script>";
+            echo"<script> alert('Successfully added into the committee');
+                history.back();</script>";
         } else {
-            echo"<script> alert('Something went wrong') </script>";
+            echo"<script> alert('Something went wrong'); </script>";
         }
     }
 ?>

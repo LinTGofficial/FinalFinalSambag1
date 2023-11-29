@@ -7,19 +7,16 @@
     $result = mysqli_query($conn, $sql);
     $comm = mysqli_fetch_array($result, MYSQLI_ASSOC);
 
-    //setting variables
     $commName = $comm["CommName"];
 
-    //update function
     if(isset($_POST["submit"])){
-        //updated data
         $newName = $_POST["commName"];
         $img = $_FILES['image']['name'];
         move_uploaded_file($_FILES['image']['tmp_name'], 'uploads/' . $img);
 
         $sql = "UPDATE tblcomm SET `CommName`= '$newName', `CommPic`= '$img' WHERE CommID =".$Commid;
         if($result = mysqli_query($conn, $sql)){
-            echo "<script> alert('Document Updated')
+            echo "<script> alert('Committee Updated');
                 window.location.href='committee.php'
                 </script>";
         }else {
