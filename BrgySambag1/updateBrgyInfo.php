@@ -52,7 +52,7 @@
 </head>
 <body>
 <div class="mt-3 regContainer">
-    <div class="register">
+    <div class="register mt-3 mb-2">
       <h1>EDIT</h1>
         <form method="POST">
         <label> Barangay Name:</label>
