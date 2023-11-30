@@ -37,7 +37,7 @@ if(isset($_POST["submit"])){
     if($_POST["pass"] === $_POST["confirmpass"]){
       if(strlen($password) >= 8){
         if($age >= 18){
-          $sql = "INSERT INTO users VALUES('', '$lastname', '$middlename', '$firstname', '$city', '$barangay', '$sitio', '$houseNo', '$street', '$age', '$email' , MD5('$password'), $privilege, '0')";
+          $sql = "INSERT INTO users VALUES('', '$lastname', '$middlename', '$firstname', '$city', '$barangay', '$sitio', '$houseNo', '$street', '$age', '$email' , MD5('$password'), $privilege, 0, 0)";
           mysqli_query($conn, $sql);
     
           $sql2 = "SELECT * FROM users WHERE email = '$email'";
