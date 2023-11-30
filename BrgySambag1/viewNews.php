@@ -7,7 +7,7 @@
     
 
     // Retrieve all the posts from the database
-    $sql = "SELECT * FROM uploads WHERE uploadId = ". $id;
+    $sql = "SELECT * FROM article WHERE uploadId = ". $id;
     $result = mysqli_query($conn, $sql);
     $info = mysqli_fetch_array($result, MYSQLI_ASSOC);
 

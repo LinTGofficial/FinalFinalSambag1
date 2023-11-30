@@ -324,6 +324,10 @@
   padding: 10px 10px 10px 40px;
 }
 
+.table #toggleAdd {
+  cursor: pointer;
+}
+
 .table th:last-child {
   display: flex;
 }
@@ -949,7 +953,7 @@
 .about-ins {
   display: flex;
   flex-direction: row;
-  gap: 25px;
+  gap: 10px;
 }
 
 .about-ins div {
@@ -1031,20 +1035,25 @@
   bottom: 0px;
 }
 
+.upload input[type=checkbox] {
+  width: fit-content;
+}
+
 .close-button {
   position: absolute;
   top: 10px;
   right: 10px;
   cursor: pointer;
   padding: 5px;
-  color: white;
+  color: grey;
 }
 
 .actions-news {
   bottom: 0px;
   right: 0px;
-  position: absolute;
+  position: fixed;
   display: flex;
+  z-index: 2;
 }
 
 .actions-news a {
@@ -1363,6 +1372,8 @@
   width: fit-content;
   height: fit-content;
   min-width: 50%;
+  max-height: 60%;
+  overflow-y: auto;
   border-radius: 10px;
   border: 3px solid #555555;
   background: url(drawable/bg.png);
@@ -4853,6 +4864,7 @@ img {
   padding: 0.75rem 1.5rem;
   border-radius: 20px;
   background-color: #0980C4;
+  color: white;
 }
 .btn-primary:hover {
   background-color: #0a90dc;

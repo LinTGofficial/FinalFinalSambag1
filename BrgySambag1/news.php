@@ -16,7 +16,7 @@ if (isset($_POST['submit'])) {
 
     move_uploaded_file($_FILES['image']['tmp_name'], 'uploads/' . $img);
 
-    $sql = "INSERT INTO uploads VALUES ('', '$id', '$date', '$img', '$title', '$description', '$category')";
+    $sql = "INSERT INTO article VALUES ('', '$date', '$img', '$title', '$description', '$category')";
     mysqli_query($conn, $sql);
 }
 
@@ -26,7 +26,7 @@ $selectedCategory = '';
 if (isset($_POST['submit2'])) {
     $selectedCategory = $_POST['categoryFilter'];
 
-    $sql2 = "SELECT * FROM uploads";
+    $sql2 = "SELECT * FROM article";
     if (!empty($selectedCategory)) {
         $sql2 .= " WHERE category = '$selectedCategory' ";
     }
@@ -34,7 +34,7 @@ if (isset($_POST['submit2'])) {
 
     $result2 = mysqli_query($conn, $sql2);
 } else {
-    $sql2 = "SELECT * FROM uploads ORDER BY uploadId DESC";
+    $sql2 = "SELECT * FROM article ORDER BY uploadId DESC";
     $result2 = mysqli_query($conn, $sql2);
 }
 ?>

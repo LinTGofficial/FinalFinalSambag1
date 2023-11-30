@@ -1,15 +1,10 @@
 <?php
-//checking database connection
 require 'connection.php';
-//checking if logged in or not
 require 'checkuser.php';
-//ignore warning about session already started
 error_reporting(E_ERROR | E_PARSE);
-//starting session
 session_start();
 
-// Retrieve all the posts from the database
-$sql = "SELECT * FROM uploads ORDER BY uploadId DESC LIMIT 4";
+$sql = "SELECT * FROM article ORDER BY uploadId DESC LIMIT 4";
 $result = mysqli_query($conn, $sql);
 ?>
 <!DOCTYPE html>

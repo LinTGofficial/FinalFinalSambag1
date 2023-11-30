@@ -51,22 +51,22 @@ $username = $acc['username'];
     <div class="mt-10 pt-4 about-brgy">
       <div class="about-ins">
         <div>
-          <p>Account Id:</p>
-          <p>Name:</p>
-          <p>City:</p>
-          <p>Barangay:</p>
-          <p>Sitio:</p>
-          <p>House No.:</p>
-          <p>Street:</p>
+          <p>Account Id</p>
+          <p>Name</p>
+          <p>City</p>
+          <p>Barangay</p>
+          <p>Sitio</p>
+          <p>House No.</p>
+          <p>Street</p>
         </div>
         <div>
-          <p><?php echo "$id"?></p>
-          <p><?php echo "$name"?></p>
-          <p><?php echo "$city"?></p>
-          <p><?php echo "$barangay"?></p>
-          <p><?php echo "$sitio"?></p>
-          <p><?php echo "$houseNo"?></p>
-          <p><?php echo "$street"?></p>
+          <p>: <?php echo "$id"?></p>
+          <p>: <?php echo "$name"?></p>
+          <p>: <?php echo "$city"?></p>
+          <p>: <?php echo "$barangay"?></p>
+          <p>: <?php echo "$sitio"?></p>
+          <p>: <?php echo "$houseNo"?></p>
+          <p>: <?php echo "$street"?></p>
         </div>
       </div>
       <div>

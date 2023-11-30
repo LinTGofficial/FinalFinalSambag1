@@ -11,7 +11,6 @@ echo("
     <div class='font-poppins-medium options'>
 ");
 
-//sees if logged in is defined or not, if it is not, it will ignore the warning
 if(isset($_SESSION['loggedin']) && $_SESSION['loggedin']){
     $currentuser = $_SESSION['username'];
     $name = $_SESSION['name'];
@@ -56,7 +55,7 @@ if(isset($_SESSION['loggedin']) && $_SESSION['loggedin']){
         <a href='committee.php'>Barangay Committees</a>
         <div class='dropdown'>
             <a class='dropbtn'>Documents
-                <img src='drawable/dropdown.png' alt='img'  class='home-logo'>
+                <img src='drawable/dropdown.png' alt='img'class='home-logo'>
             </a>
             <div class='dropdown-content'>
                 <a href='documentDtb.php'>Document list</a>
@@ -65,13 +64,14 @@ if(isset($_SESSION['loggedin']) && $_SESSION['loggedin']){
         </div>
         <div class='dropdown'>
             <a class='dropbtn'>About
-                <img src='drawable/dropdown.png' alt='img'  class='home-logo'>
+                <img src='drawable/dropdown.png' alt='img'class='home-logo'>
             </a>
             <div class='dropdown-content'>
                 <a href='about.php'>Barangay Information</a>
                 <a href='contactDtb.php'>Contact Information</a>
             </div>
         </div>
+        <a href='adminDtb.php'>Admins</a>
         <a href='profile.php'>Profile</a>
         <a href='logout.php'> <img src='drawable/person.png' alt='img'> Logout</a>
         ";
@@ -85,7 +85,7 @@ if(isset($_SESSION['loggedin']) && $_SESSION['loggedin']){
     <a href='committee.php'>Barangay Committees</a>
     <div class='dropdown'>
         <a class='dropbtn'>Documents
-            <img src='drawable/dropdown.png' alt='img'  class='home-logo'>
+            <img src='drawable/dropdown.png' alt='img'class='home-logo'>
         </a>
         <div class='dropdown-content'>
         <a href='documentDtb.php'>Document List</a>
@@ -94,7 +94,7 @@ if(isset($_SESSION['loggedin']) && $_SESSION['loggedin']){
     </div>
     <div class='dropdown'>
         <a class='dropbtn'>About
-            <img src='drawable/dropdown.png' alt='img'  class='home-logo'>
+            <img src='drawable/dropdown.png' alt='img'class='home-logo'>
         </a>
         <div class='dropdown-content'>
             <a href='about.php'>Barangay Information</a>
@@ -105,7 +105,6 @@ if(isset($_SESSION['loggedin']) && $_SESSION['loggedin']){
     ";
 }
 
-//close the menu when clicking anywhere inside nav
 echo("</div></div>")
 
 ?>

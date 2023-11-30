@@ -4,7 +4,7 @@
     $id = $_GET["id"];
     $back = '';
 
-    $sql = "SELECT * FROM uploads WHERE uploadId = $id;";
+    $sql = "SELECT * FROM article WHERE uploadId = $id;";
     $result = mysqli_query($conn, $sql);
     $news = mysqli_fetch_array($result, MYSQLI_ASSOC);
 
@@ -22,23 +22,23 @@
         
         //check if theres an img
         if (empty($_FILES['image']['name'])){
-            $sql = "UPDATE uploads SET `Title`= '$newTitle', `description`= '$newDesc', `category`= '$newCategory' WHERE uploadId =".$id;
+            $sql = "UPDATE article SET `title`= '$newTitle', `description`= '$newDesc', `category`= '$newCategory' WHERE uploadId =".$id;
             
             if($result = mysqli_query($conn, $sql)){
-                echo "<script> alert('Document Updated(Image not changed)'); window.location.href = 'news.php' </script>";
+                echo "<script> alert('Article Updated(Image not changed)'); history.go(-2); </script>";
             }else {
-                echo "Something went wrong. Please try again later.";
+                echo "<script> alert('Something went wrong...');</script>";
             }
             
         }else{
             $newImg = $_FILES['image']['name'];
-            move_uploaded_file($_FILES['image']['tmp_name'], 'uploads/' . $img);
-            $sql = "UPDATE uploads SET `Title`= '$newTitle', `description`= '$newDesc', `category`= '$newCategory', `img`= '$newImg' WHERE uploadId =".$id;
+            move_uploaded_file($_FILES['image']['tmp_name'], 'uploads/' . $newImg);
+            $sql = "UPDATE article SET `title`= '$newTitle', `description`= '$newDesc', `category`= '$newCategory', `img`= '$newImg' WHERE uploadId =".$id;
 
             if($result = mysqli_query($conn, $sql)){
-                echo "<script> alert('Document Updated; window.location.href = 'news.php' </script>";
+                echo "<script> alert('Article Updated'); history.go(-2); </script>";
             }else {
-                echo "Something went wrong. Please try again later.";
+                echo "<script> alert('Something went wrong...'); </script>";
             }
         }
     }
@@ -61,7 +61,6 @@
     </a>
     <div class="newsbody mt-1" id="newsbody2">
         <div class="upload" id="upload">
-        <a href="view.php?id=<?php echo $id?>"><div class="close-button" id="close-button">X</div></a>
         <h1>Edit Article</h1>
         <form method="POST" enctype="multipart/form-data">
             <label>Title:</label>

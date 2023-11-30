@@ -1,11 +1,12 @@
 <?php
     require_once "connection.php";
-    $id = $_GET["id"];
-    $query = "DELETE FROM users WHERE id = '$id'";
+    $userId = $_GET["id"];
+    $query = "UPDATE users SET `Archive` = 1 WHERE `id` = '$userId'";
     if (mysqli_query($conn, $query)) {
-        header("location: database.php");
+        header("location: adminDtb.php");
         die;
     } else {
-         echo "Something went wrong. Please try again later.";
+        echo "<script> alert('Something went wrong...');
+            history.go(-1);</script>";
     }
 ?>
