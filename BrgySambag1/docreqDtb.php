@@ -43,9 +43,9 @@
             </thead>
             <tbody class="tbl-data">
                 <?php 
-                    $sql_query = "SELECT u.id, concat(u.firstname, ' ', u.middleName, ' ', u.lastname) AS name, u.sitio, u.houseNo, d.docreqID, d.requestDate, d.reference, d.status, td.docName, d.totalByRef
+                    $sql_query = "SELECT u.userID, concat(u.firstname, ' ', u.middleName, ' ', u.lastname) AS name, u.sitio, u.houseNo, d.userID, d.requestDate, d.reference, d.status, td.docName, d.totalByRef
                     from users u 
-                    INNER JOIN docreq d on u.id = d.requestId
+                    INNER JOIN docreq d on u.userID = d.userID
                     INNER JOIN tbldocument td ON d.docID = td.docID
                     WHERE d.Archive = 0
                     GROUP BY reference
