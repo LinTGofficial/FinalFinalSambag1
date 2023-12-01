@@ -23,7 +23,7 @@ if(isset($_POST["submit"])){
       $_SESSION['birthdate'] = $acc['birthdate'];
       $_SESSION['sitio'] = $acc['sitio'];
       $_SESSION['houseNo'] = $acc['houseNo'];
-      $_SESSION['id'] = $acc["UserID"];
+      $_SESSION['id'] = $acc["userID"];
       $_SESSION['email'] = $acc["email"];
       $_SESSION['privilege'] = $acc["isAdmin"];
       $_SESSION['verified'] = $acc["verified"];
