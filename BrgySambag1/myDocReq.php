@@ -28,7 +28,7 @@
         <div class="note">
             <p class="m-2">Note: If document <u>STATUS</u> is <u class="text-green-dark-3">APPROVED</u>, kindly proceed to the barangay and bring any <u>VALID ID</u> for validation purposes and claiming of the documents</p>
             <?php
-                $sql = "SELECT * FROM docreq dr JOIN tbldocument d ON dr.docID = d.docID WHERE (`status` = 'approved' OR `status` = 'pending') AND requestId = $id";
+                $sql = "SELECT * FROM docreq dr JOIN tbldocument d ON dr.docID = d.docID WHERE (`status` = 'approved' OR `status` = 'pending') AND UserID = $id";
                 $query = mysqli_query($conn, $sql);
                 while($row = mysqli_fetch_array($query)){
                     $price = $row['price'];
@@ -51,11 +51,11 @@
             </thead>
             <tbody class="tbl-data">
                 <?php 
-                    $sql_query = "SELECT u.id, CONCAT(u.firstname, ' ', u.lastname) AS name, u.sitio, u.houseNo, d.docreqID, d.requestDate, d.reference, d.status, td.docName, td.price
+                    $sql_query = "SELECT u.userID, CONCAT(u.firstname, ' ', u.lastname) AS name, u.sitio, u.houseNo, d.docreqID, d.requestDate, d.reference, d.status, td.docName, td.price
                     FROM users u
-                    INNER JOIN docreq d ON u.id = d.requestId 
+                    INNER JOIN docreq d ON u.userID = d.userID 
                     INNER JOIN tbldocument td ON d.docID = td.docID
-                    WHERE (d.Archive = 0 AND u.id = '$id')
+                    WHERE (d.Archive = 0 AND u.userID = '$id')
                     ORDER BY d.requestDate DESC;";
                     if ($result = $conn ->query($sql_query)) {
                         while ($row = $result -> fetch_assoc()) { 

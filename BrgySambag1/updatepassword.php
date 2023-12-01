@@ -3,7 +3,7 @@
     include 'checkuser.php';
     $id = $_GET["id"];
 
-    $sql = "SELECT * FROM users WHERE id = '$id'";
+    $sql = "SELECT * FROM users WHERE userID = '$id'";
     $result = mysqli_query($conn, $sql);
     $acc = mysqli_fetch_array($result, MYSQLI_ASSOC);
 
@@ -17,7 +17,7 @@
       $confirmpass = $_POST["confirmpass"];
 
       if($pass == md5($currentpass) && $newpass == $confirmpass){
-        $sql = "UPDATE users SET `password`= MD5('$newpass') WHERE id =".$id;
+        $sql = "UPDATE users SET `password`= MD5('$newpass') WHERE userID =".$id;
         $result = mysqli_query($conn, $sql);
         echo "<script> alert('Password Changed')
           window.location.href='profile.php'</script>";

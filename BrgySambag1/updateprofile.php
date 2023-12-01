@@ -4,7 +4,7 @@
 
     $id = $_GET["id"];
 
-    $sql = "SELECT * FROM users WHERE id = '$id'";
+    $sql = "SELECT * FROM users WHERE userID = '$id'";
     $result = mysqli_query($conn, $sql);
     $acc = mysqli_fetch_array($result, MYSQLI_ASSOC);
 
@@ -42,7 +42,7 @@
           sitio= '$newsitio', 
           houseNo= '$newhouseNo', 
           street= '$newstreet', 
-          age= $age WHERE id =" .$id;
+          age= $age WHERE userID =" .$id;
         if($result = mysqli_query($conn, $sql)){
             $_SESSION['username'] = $acc['username'];
             $_SESSION['name'] = $newfirstname . ' ' . $newlastname;

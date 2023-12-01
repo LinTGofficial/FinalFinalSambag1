@@ -3,7 +3,7 @@
     include 'checkuser.php';
     $userId = $_GET["id"];
 
-    $sql = "SELECT * FROM users WHERE id = '$userId'";
+    $sql = "SELECT * FROM users WHERE userID = '$userId'";
     $result = mysqli_query($conn, $sql);
     $acc = mysqli_fetch_array($result, MYSQLI_ASSOC);
 
@@ -22,7 +22,7 @@
 
         if($newpass == ""){
             //without password reset
-            $sql = "UPDATE users SET lastname= '$newlastname',firstname= '$newfirstname', `middleName`= '$newmiddlename', `email` = '$newemail' WHERE id =" .$userId;
+            $sql = "UPDATE users SET lastname= '$newlastname',firstname= '$newfirstname', `middleName`= '$newmiddlename', `email` = '$newemail' WHERE userID =" .$userId;
             if($result = mysqli_query($conn, $sql)){
                 echo "<script> alert('Admin Updated');
                     window.location.href='adminDtb.php';</script>";
@@ -33,7 +33,7 @@
             if($newpass == $_POST['conPass']){
                 if(strlen($newpass) >= 8){
                     //with password reset
-                    $sql = "UPDATE users SET lastname= '$newlastname',firstname= '$newfirstname', `middleName`= '$newmiddlename', `email` = '$newemail', `password` = md5('$newpass') WHERE id =" .$userId;
+                    $sql = "UPDATE users SET lastname= '$newlastname',firstname= '$newfirstname', `middleName`= '$newmiddlename', `email` = '$newemail', `password` = md5('$newpass') WHERE userID =" .$userId;
                     if($result = mysqli_query($conn, $sql)){
                         echo "<script> alert('Admin Updated');
                             window.location.href='adminDtb.php';</script>";

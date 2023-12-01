@@ -30,11 +30,11 @@ if (isset($_POST['submit2'])) {
     if (!empty($selectedCategory)) {
         $sql2 .= " WHERE category = '$selectedCategory' ";
     }
-    $sql2 .= " ORDER BY uploadId DESC";
+    $sql2 .= " ORDER BY articleID DESC";
 
     $result2 = mysqli_query($conn, $sql2);
 } else {
-    $sql2 = "SELECT * FROM article ORDER BY uploadId DESC";
+    $sql2 = "SELECT * FROM article ORDER BY articleID DESC";
     $result2 = mysqli_query($conn, $sql2);
 }
 ?>
@@ -131,7 +131,7 @@ if (isset($_POST['submit2'])) {
     <div class="news">
         <?php while ($row = mysqli_fetch_assoc($result2)) { ?>
             <div class="news_card2">
-                <a href="viewNews.php?id=<?php echo $row['uploadId'] ?>" class="view">Read Article  <img src="drawable/view.png" alt="Read Article"></a>
+                <a href="viewNews.php?id=<?php echo $row['articleID'] ?>" class="view">Read Article  <img src="drawable/view.png" alt="Read Article"></a>
                 <img src="uploads/<?php echo $row['img']; ?>" alt="Post Image">
                 <div class="desc2">
                     <h2><?php echo $row['title']; ?></h2>

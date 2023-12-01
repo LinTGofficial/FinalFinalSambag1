@@ -4,7 +4,7 @@ require 'checkuser.php';
 error_reporting(E_ERROR | E_PARSE);
 session_start();
 
-$sql = "SELECT * FROM article ORDER BY uploadId DESC LIMIT 4";
+$sql = "SELECT * FROM article ORDER BY articleID DESC LIMIT 4";
 $result = mysqli_query($conn, $sql);
 ?>
 <!DOCTYPE html>
@@ -27,7 +27,7 @@ $result = mysqli_query($conn, $sql);
         <div class="ln_bg">
         <?php
             while($row = mysqli_fetch_assoc($result)){?>
-                <a href="viewNews.php?id=<?php echo $row['uploadId'] ?>" class="news_card">
+                <a href="viewNews.php?id=<?php echo $row['articleID'] ?>" class="news_card">
                     <img src="uploads/<?php echo $row['img'] ?>" alt="img">
                     <div class="desc">
                         <h1 class="text-primary"><?php echo $row['title'] ?></h1>

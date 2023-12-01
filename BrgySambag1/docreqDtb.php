@@ -53,7 +53,7 @@
                     if ($result = $conn ->query($sql_query)) {
                         while ($row = $result -> fetch_assoc()) { 
                             $DocreqID = $row['docreqID'];
-                            $Id = $row['id'];
+                            $Id = $row['userID'];
                             $Name = $row['name'];
                             $HouseNo = $row['houseNo'];
                             $Sitio = $row['sitio'];

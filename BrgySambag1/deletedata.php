@@ -1,7 +1,7 @@
 <?php
     require_once "connection.php";
     $userId = $_GET["id"];
-    $query = "UPDATE users SET `Archive` = 1 WHERE `id` = '$userId'";
+    $query = "UPDATE users SET `Archive` = 1 WHERE `userID` = '$userId'";
     if (mysqli_query($conn, $query)) {
         header("location: adminDtb.php");
         die;

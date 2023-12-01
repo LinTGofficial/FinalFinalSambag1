@@ -8,7 +8,7 @@ require 'checkuser.php';
 
 if($_SESSION['loggedin']){
   $id = $_SESSION['id'];
-  $verifysql = "SELECT * FROM users WHERE `id` = '$id'";
+  $verifysql = "SELECT * FROM users WHERE `userID` = '$id'";
   $verifyresult = mysqli_query($conn, $verifysql);
   $result = mysqli_fetch_array($verifyresult);
   if($result["verified"] == "1"){

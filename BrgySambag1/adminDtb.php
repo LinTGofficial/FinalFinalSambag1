@@ -102,7 +102,7 @@ if(isset($_POST['submit'])){
                             if ($result = $conn ->query($sql_query)) {
                                 $row_count = 0;
                                 while ($row = $result -> fetch_assoc()) { 
-                                    $userId = $row['id'];
+                                    $userId = $row['userID'];
                                     $Name = $row['firstname'] . " " .$row['middleName']. " " . $row['lastname'];
                                     $Email = $row['email'];
                                     $IsAdmin = $row['isAdmin'];

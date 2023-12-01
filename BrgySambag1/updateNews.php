@@ -4,7 +4,7 @@
     $id = $_GET["id"];
     $back = '';
 
-    $sql = "SELECT * FROM article WHERE uploadId = $id;";
+    $sql = "SELECT * FROM article WHERE articleID = $id;";
     $result = mysqli_query($conn, $sql);
     $news = mysqli_fetch_array($result, MYSQLI_ASSOC);
 
@@ -22,7 +22,7 @@
         
         //check if theres an img
         if (empty($_FILES['image']['name'])){
-            $sql = "UPDATE article SET `title`= '$newTitle', `description`= '$newDesc', `category`= '$newCategory' WHERE uploadId =".$id;
+            $sql = "UPDATE article SET `title`= '$newTitle', `description`= '$newDesc', `category`= '$newCategory' WHERE articleID =".$id;
             
             if($result = mysqli_query($conn, $sql)){
                 echo "<script> alert('Article Updated(Image not changed)'); history.go(-2); </script>";
@@ -33,7 +33,7 @@
         }else{
             $newImg = $_FILES['image']['name'];
             move_uploaded_file($_FILES['image']['tmp_name'], 'uploads/' . $newImg);
-            $sql = "UPDATE article SET `title`= '$newTitle', `description`= '$newDesc', `category`= '$newCategory', `img`= '$newImg' WHERE uploadId =".$id;
+            $sql = "UPDATE article SET `title`= '$newTitle', `description`= '$newDesc', `category`= '$newCategory', `img`= '$newImg' WHERE articleID =".$id;
 
             if($result = mysqli_query($conn, $sql)){
                 echo "<script> alert('Article Updated'); history.go(-2); </script>";
