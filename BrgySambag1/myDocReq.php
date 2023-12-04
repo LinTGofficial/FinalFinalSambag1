@@ -28,14 +28,13 @@
         <div class="note">
             <p class="m-2">Note: If document <u>STATUS</u> is <u class="text-green-dark-3">APPROVED</u>, kindly proceed to the barangay and bring any <u>VALID ID</u> for validation purposes and claiming of the documents</p>
             <?php
-                $sql = "SELECT * FROM docreq dr JOIN tbldocument d ON dr.docID = d.docID WHERE (`status` = 'approved' OR `status` = 'pending') AND UserID = $id";
+                $sql = "SELECT * FROM docreq dr JOIN tbldocument d ON dr.docID = d.docID WHERE (`status` = 'approved' OR `status` = 'pending') AND UserID = $id AND dr.archive = 0";
                 $query = mysqli_query($conn, $sql);
                 while($row = mysqli_fetch_array($query)){
                     $price = $row['price'];
                     $total += $price;
                 }
             ?>
-            <!--<p>To be paid: <?php if($total == 0){echo "0";}else{echo $total;} ?></p>-->
         </div>
     <div class="table">
         <table>

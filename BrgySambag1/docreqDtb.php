@@ -7,11 +7,18 @@
     session_start();
     $currentuser = $_SESSION['username'];
     $id = $_SESSION['id'];
+    $search = $_GET['search'];
+
     if(!$_SESSION['privilege']){
         header("Location: index.php");
         die;
     }else{
         include 'checkuser.php';
+    }
+
+    if(isset($_POST['search'])){
+        $input = $_POST['input'];
+        echo "<script>window.location.href='docreqDtb.php?search=$input'</script>";
     }
 ?>
 
@@ -27,6 +34,13 @@
         <h1 class="mt-3 text-secondary font-xxl">Document Requests</h1>
         </div>
     <section class="dtbCont">
+    <div class="search" style="margin-top:-2%;">
+        <form method="POST" class="">
+            <a class="mr-1">Search by Reference:</a><nobr>
+            <input class="mb-1 font-sl" type="text" name="input"><nobr>
+            <button class="btn-primary ml-1" type="submit" name="search"><img src="drawable/search.png" style="height:20px;">SEARCH</button>
+        </form>
+    </div>
     <div class="table">
         <table>
             <thead class="thead">
@@ -43,13 +57,23 @@
             </thead>
             <tbody class="tbl-data">
                 <?php 
-                    $sql_query = "SELECT u.userID, concat(u.firstname, ' ', u.middleName, ' ', u.lastname) AS name, u.sitio, u.houseNo, d.userID, d.requestDate, d.reference, d.status, td.docName, d.totalByRef
-                    from users u 
-                    INNER JOIN docreq d on u.userID = d.userID
-                    INNER JOIN tbldocument td ON d.docID = td.docID
-                    WHERE d.Archive = 0
-                    GROUP BY reference
-                    ORDER BY d.requestDate DESC;";
+                    if(empty($search)){
+                        $sql_query = "SELECT u.userID, concat(u.firstname, ' ', u.middleName, ' ', u.lastname) AS name, u.sitio, u.houseNo, d.userID, d.requestDate, d.reference, d.status, td.docName, d.totalByRef
+                        from users u 
+                        INNER JOIN docreq d on u.userID = d.userID
+                        INNER JOIN tbldocument td ON d.docID = td.docID
+                        WHERE d.Archive = 0
+                        GROUP BY reference
+                        ORDER BY d.requestDate DESC;";
+                    } else {
+                        $sql_query = "SELECT u.userID, concat(u.firstname, ' ', u.middleName, ' ', u.lastname) AS name, u.sitio, u.houseNo, d.userID, d.requestDate, d.reference, d.status, td.docName, d.totalByRef
+                        from users u 
+                        INNER JOIN docreq d on u.userID = d.userID
+                        INNER JOIN tbldocument td ON d.docID = td.docID
+                        WHERE d.Archive = 0 AND d.reference LIKE '$search%'
+                        GROUP BY reference
+                        ORDER BY d.requestDate DESC;";
+                    }
                     if ($result = $conn ->query($sql_query)) {
                         while ($row = $result -> fetch_assoc()) { 
                             $DocreqID = $row['docreqID'];
@@ -77,8 +101,8 @@
                 </tr>
                 <?php
                             $row_count++;
+                            }
                         } 
-                    } 
                 ?>
             </tbody>
         </table>

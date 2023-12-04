@@ -52,15 +52,26 @@ if(isset($_POST["submit"])){
 </head>
 <body>
 <div class="regContainer">
-    <div class="register">
+    <div class="register mt-3">
     <a href="index.php">
     <img src='drawable/Logo.png' alt='img'  class='reg-logo'>
     </a>
         <form method="POST">
           <div class="m-2">
             <input class="mb-1 font-lg" type="text" name="email" placeholder="Email" required><br>
-            <input class="mb-1 font-lg" type="password" name="pass" placeholder="Password" required><br>
-            <a class="text-primary" href="forgotPass.php">Forgot Password?</a>
+            <input class="mb-1 font-lg" type="password" name="pass" placeholder="Password" id="password" required><br>
+            <input class="mb-1 font-lg" type="checkbox" onclick="myFunction()" id="showpass"> Show Password </input>
+          <script>
+            function myFunction() {
+              var x = document.getElementById("password");
+              if (x.type === "password") {
+                x.type = "text";
+              } else {
+                x.type = "password";
+              }
+            }
+          </script>
+            <a class="text-primary" style="float:right" href="forgotPass.php">Forgot Password?</a>
           </div>
           <button class="btn-primary text-white" type="submit" name="submit"> Log In </button><br>
           <p> Not yet registered? <a href="register.php"> REGISTER HERE </a></p>

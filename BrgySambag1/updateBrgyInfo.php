@@ -3,7 +3,7 @@
     require 'checkuser.php';
     $popId = $_GET["id"];
 
-    $sql = "SELECT * FROM tblbrgyinfo b INNER JOIN tblpopulation p on b.InfoID = p.InfoID WHERE p.PopID = $popId;";
+    $sql = "SELECT * FROM tblbrgyinfo WHERE InfoID = 1;";
     $result = mysqli_query($conn, $sql);
     $info = mysqli_fetch_array($result, MYSQLI_ASSOC);
 
@@ -12,8 +12,8 @@
     $brgyName = $info['Name'];
     $geographic = $info['Geographic District'];
     $legislative = $info['Legislative District'];
-    $population = $info['Population'];
-    $year = $info['YEAR'];
+    $population = $info['population'];
+    $year = $info['popYear'];
     $captain = $info['BrgyCaptain'];
     $psgcCode = $info['PSGC CODE'];
     $psgcClass = $info['PSGC Class'];
@@ -30,10 +30,9 @@
 
         $sql1 = "UPDATE tblbrgyinfo SET `Name`= '$newbrgyName', `Geographic District`= '$newgeographic', 
           `Legislative District`= '$newlegislative', `BrgyCaptain`= '$newcaptain', 
-          `PSGC CODE`= '$newpsgcCode', `PSGC Class`= '$newpsgcClass' 
-          WHERE InfoID = $id";
-        $sql2 = "UPDATE tblpopulation SET `Population`= '$newpopulation', `YEAR`= '$newyear' WHERE PopID = $popId";
-        if($result = mysqli_query($conn, $sql1) && $result2 = mysqli_query($conn, $sql2)){
+          `PSGC CODE`= '$newpsgcCode', `PSGC Class`= '$newpsgcClass', `population`= '$newpopulation', `popYear`= '$newyear'
+          WHERE InfoID = 1";
+        if($result = mysqli_query($conn, $sql1)){
             header("Location: about.php");
             die;
         }else {

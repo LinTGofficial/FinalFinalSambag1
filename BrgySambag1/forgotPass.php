@@ -54,7 +54,7 @@ function generateToken(){
 </head>
 <body>
   <div class="regContainer mt-3">
-  <a href="login.php" class='backArrow mt-3'>
+  <a href="login.php" class='backArrow mt-10'>
     <img src='drawable/backArrow.png' alt='back'>
   </a>
     <div class="register">

@@ -2,7 +2,7 @@
 require 'connection.php';
 require 'checkuser.php';
 
-$sql = "SELECT * FROM tblbrgyinfo b INNER JOIN tblpopulation p on b.InfoID = p.InfoID WHERE p.PopID = (SELECT MAX(PopID) FROM tblpopulation);";
+$sql = "SELECT * FROM tblbrgyinfo;";
 $result = mysqli_query($conn, $sql);
 $info = mysqli_fetch_array($result, MYSQLI_ASSOC);
 
@@ -11,8 +11,8 @@ $popId = $info['PopID'];
 $brgyName = $info['Name'];
 $geographic = $info['Geographic District'];
 $legislative = $info['Legislative District'];
-$population = $info['Population'];
-$year = $info['YEAR'];
+$population = $info['population'];
+$year = $info['popYear'];
 $captain = $info['BrgyCaptain'];
 $psgcCode = $info['PSGC CODE'];
 $psgcClass = $info['PSGC Class'];
@@ -30,7 +30,13 @@ $psgcClass = $info['PSGC Class'];
 <div class="regContainer">
     <h1 class="abt-header">ABOUT THE BARANGAY</h1>
     <div class="about-brgy">
-            <div class="mt-10 about-ins">
+            <div <?php
+                    if(isset($_SESSION['privilege']) && $_SESSION['privilege']){
+                        echo "class='mt-5 about-ins'";
+                    } else {
+                        echo "class='mt-1 about-ins'";
+                    }
+                ?>>
                 <div>
                     <p>BARANGAY NAME:</p>
                     <p>GEOGRAPHIC DISTRICT:</p>
