@@ -4,7 +4,7 @@
             <div class="footer-extra">
                 <a href="about.php">Barangay Information</a>
                 <a href="officials.php">Barangay Officials</a>
-                <a href="officials.php">Barangay Committees</a>
+                <a href="committee.php">Barangay Committees</a>
             </div>
             <div class="footer-extra">
                 <a href="docreq.php">Request Document</a>
