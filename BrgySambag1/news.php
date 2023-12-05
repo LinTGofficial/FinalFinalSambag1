@@ -63,7 +63,7 @@ if (isset($_POST['submit2'])) {
                         <label class="mt-1" for="category">Category:</label>
                         <select name="category" require>
                             <option value="News">News</option>
-                            <option value="News">Activities</option>
+                            <option value="Activities">Activities</option>
                             <option value="Announcements">Announcements</option>
                         </select>
                         <label class="mt-1">Description:</label>

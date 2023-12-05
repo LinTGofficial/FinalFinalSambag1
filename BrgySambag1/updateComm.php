@@ -11,17 +11,31 @@
 
     if(isset($_POST["submit"])){
         $newName = $_POST["commName"];
-        $img = $_FILES['image']['name'];
-        move_uploaded_file($_FILES['image']['tmp_name'], 'uploads/' . $img);
 
-        $sql = "UPDATE tblcomm SET `CommName`= '$newName', `CommPic`= '$img' WHERE CommID =".$Commid;
-        if($result = mysqli_query($conn, $sql)){
-            echo "<script> alert('Committee Updated');
-                window.location.href='committee.php'
-                </script>";
-        }else {
-            echo "Something went wrong. Please try again later.";
-       }}
+        if(empty($_FILES['image']['name'])){
+  
+          $sql = "UPDATE tblcomm SET `CommName`= '$newName' WHERE CommID =".$Commid;
+          if($result = mysqli_query($conn, $sql)){
+              echo "<script> alert('Committee Updated');
+                  window.location.href='committee.php'
+                  </script>";
+          }else {
+              echo "Something went wrong. Please try again later.";
+         }
+        } else {
+          $img = $_FILES['image']['name'];
+          move_uploaded_file($_FILES['image']['tmp_name'], 'uploads/' . $img);
+  
+          $sql = "UPDATE tblcomm SET `CommName`= '$newName', `CommPic`= '$img' WHERE CommID =".$Commid;
+          if($result = mysqli_query($conn, $sql)){
+              echo "<script> alert('Committee Updated');
+                  window.location.href='committee.php'
+                  </script>";
+          }else {
+              echo "Something went wrong. Please try again later.";
+         }
+        }
+      }
         
 ?>
 
@@ -40,7 +54,7 @@
         <form method="POST" enctype="multipart/form-data">
         <label for="lastname"> Name:</label>
           <input type="text" name="commName" value="<?php echo $commName?>" placeholder="Last Name" class="address" required><br>
-        <label>Profile Picture:</label>
+        <label>Picture:</label>
             <input type="file" name="image" onchange="fileChanged(this)" accept=".jpg,.png"><br>
             <span  id="file"></span><br>
         <button type="submit" name="submit"> UPDATE </button><br>

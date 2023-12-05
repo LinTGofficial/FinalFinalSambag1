@@ -17,7 +17,7 @@ $sql = "SELECT * FROM tbltoken WHERE token = '$token'";
 $query = mysqli_query($conn, $sql);
 $result = mysqli_fetch_array($query);
 
-$userID = $result['userID'];
+$userID = $result['UserID'];
 
 $rowcount = mysqli_num_rows($query);
 if($rowcount != 1){
@@ -27,17 +27,25 @@ if($rowcount != 1){
 
 if(isset($_POST["submit"])){
   $newpass = $_POST['pass'];
-
-  $sql2 = "UPDATE users SET `password`= md5('$newpass') WHERE id = $userID";
-  if(mysqli_query($conn, $sql2)){
-    $deletesql = "DELETE FROM tbltoken WHERE token = '$token'";
-    $deletequery = mysqli_query($conn, $deletesql);
-    echo "<script>alert('Password changed successfully');
-      window.location.href='login.php';</script>";
-  }else{
-    echo "<script>alert('Something went wrong');
-      window.location.href='index.php';</script>";
+  if(strlen($newpass) >= 8){
+    if($newpass == $_POST['confirmpass']){
+      $sql2 = "UPDATE users SET `password`= md5('$newpass') WHERE userID = $userID";
+      if(mysqli_query($conn, $sql2)){
+        $deletesql = "DELETE FROM tbltoken WHERE token = '$token'";
+        $deletequery = mysqli_query($conn, $deletesql);
+        echo "<script>alert('Password changed successfully');
+          window.location.href='login.php';</script>";
+      }else{
+        echo "<script>alert('Something went wrong');
+          window.location.href='index.php';</script>";
+      }
+    } else {
+      echo "<script>alert('Password did not match');</script>";
+    }
+  } else {
+    echo "<script>alert('Password must be at least 8 characters long');</script>";
   }
+  
 }
 
 ?>
@@ -49,11 +57,10 @@ if(isset($_POST["submit"])){
   <!-- <link rel="stylesheet" type="text/css" hresf="style.css"> -->
 </head>
 <body>
-  <a href="index.php" class='backArrow'>
+  <div class="regContainer">
+  <a href="index.php" class='backArrow mt-10'>
     <img src='drawable/backArrow.png' alt='back'>
   </a>
-  <img src='drawable/Logo.png' alt='img'  class='reg-logo'>
-<div class="regContainer">
     <div class="register">
         <form method="POST">
           <div class="reg-inputs">

@@ -17,10 +17,14 @@
       $confirmpass = $_POST["confirmpass"];
 
       if($pass == md5($currentpass) && $newpass == $confirmpass){
-        $sql = "UPDATE users SET `password`= MD5('$newpass') WHERE userID =".$id;
-        $result = mysqli_query($conn, $sql);
-        echo "<script> alert('Password Changed')
-          window.location.href='profile.php'</script>";
+        if(strlen($newpass) >= 8){
+          $sql = "UPDATE users SET `password`= MD5('$newpass') WHERE userID =".$id;
+          $result = mysqli_query($conn, $sql);
+          echo "<script> alert('Password Changed')
+            window.location.href='profile.php'</script>";
+        } else {
+          echo "<script> alert('Password must be at least 8 characters long') </script>";
+        }
       }else{
         echo "<script> alert('Current password incorrect or Password didnt match') </script>";
       }

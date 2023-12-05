@@ -12,7 +12,11 @@ if($_SESSION['loggedin']){
   $verifyresult = mysqli_query($conn, $verifysql);
   $result = mysqli_fetch_array($verifyresult);
   if($result["verified"] == "1"){
+    if(isset($_SESSION['privilege']) && $_SESSION['privilege']){
+      echo "<script>window.location.href='index.php';</script>";
+    }else{
 
+    }
   }else{
     echo "<script>window.location.href='notverified.php?id=$id';</script>";
   }

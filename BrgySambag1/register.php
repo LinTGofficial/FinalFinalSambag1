@@ -32,7 +32,8 @@ if(isset($_POST["submit"])){
   $rowcount = mysqli_num_rows($result);
   
   if($rowcount > 0){
-    echo"<script> alert('Email is already taken'); </script>";
+    echo"<script> alert('Email is already taken');
+      history.go(-1); </script>";
   }else{
     if($_POST["pass"] === $_POST["confirmpass"]){
       if(strlen($password) >= 8){
@@ -43,7 +44,7 @@ if(isset($_POST["submit"])){
           $sql2 = "SELECT * FROM users WHERE email = '$email'";
           $query = mysqli_query($conn, $sql2);
           $result = mysqli_fetch_assoc($query);
-          $userID = $result['id'];
+          $userID = $result['userID'];
           $_SESSION['email'] = $email;
           $token = md5(generateToken());
           $dateTime = new DateTime();
@@ -55,25 +56,25 @@ if(isset($_POST["submit"])){
       
           $tokenSql = "INSERT INTO tbltoken values('', '$userID', '$token', '$expiration')";
             if (mysqli_query($conn, $tokenSql) && $mail->send()) {
-              echo"<script> alert('Check email to complete Registration'); 
+              echo"<script> alert('Registration Complete! Check email to verify Account'); 
               window.location.href='login.php'</script>";
             } else {
               echo "<script> alert('Email was not sent: $mail->ErrorInfo');
-              window.location.href='login.php';</script>;";
+              history.go(-1);</script>;";
             }
           }else{
             echo"<script> alert('You must be 18+ to register');
-            window.location.href='login.php';</script>";
+            history.go(-1);</script>";
           }
 
         }else{
           echo"<script> alert('Password must be at least 8 characters long')
-          window.location.href='login.php';</script>";
+          history.go(-1);</script>";
         }
       }
       else {
-        echo"<script> alert('Password and Confirm Password did not match')
-        window.location.href='login.php'; </script>";
+        echo"<script> alert('Password did not match')
+        history.go(-1); </script>";
       }
     }
   }

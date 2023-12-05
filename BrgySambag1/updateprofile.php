@@ -46,7 +46,8 @@
         if($result = mysqli_query($conn, $sql)){
             $_SESSION['username'] = $acc['username'];
             $_SESSION['name'] = $newfirstname . ' ' . $newlastname;
-            header("Location: profile.php");
+            echo"<script> alert('Profile Updated');
+              window.location.href='profile.php'; </script>";
             die;
         }else {
             echo "Something went wrong. Please try again later.";
