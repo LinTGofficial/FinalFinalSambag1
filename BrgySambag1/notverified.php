@@ -30,7 +30,7 @@ $deletequery = mysqli_query($conn, $deletesql);
         echo"<script>alert('Theres no account with this email')</script>";
     }else{
       $result = mysqli_fetch_assoc($query);
-      $userID = $result['id'];
+      $userID = $result['userID'];
       $token = md5(generateToken());
       $dateTime = new DateTime();
       $dateTime->modify('+90 seconds');
