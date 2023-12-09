@@ -71,7 +71,15 @@ if(isset($_SESSION['loggedin']) && $_SESSION['loggedin']){
                 <a href='contactDtb.php'>Contact Information</a>
             </div>
         </div>
-        <a href='adminDtb.php'>Admins</a>
+        <div class='dropdown'>
+            <a class='dropbtn'>Database
+                <img src='drawable/dropdown.png' alt='img'class='home-logo'>
+            </a>
+            <div class='dropdown-content'>
+            <a href='adminDtb.php'>Admins</a>
+            <a href='residentsDtb.php'>Residents</a>
+            </div>
+        </div>
         <a href='profile.php'>Profile</a>
         <a href='logout.php'> <img src='drawable/person.png' alt='img'> Logout</a>
         ";

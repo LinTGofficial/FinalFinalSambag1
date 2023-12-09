@@ -44,11 +44,12 @@
             </thead>
             <tbody class="tbl-data">
                 <?php 
-                    $sql_query = "SELECT u.userID, concat(u.firstname, ' ', u.lastname) AS name, u.sitio, u.houseNo, d.docreqID, d.userID, d.requestDate, d.reference, d.status, td.docName, td.price
+                    $sql_query = "SELECT u.userID, concat(r.fName, ' ' , r.mName, ' ', r.lName) AS name, r.sitio, r.houseNo_Street, d.docreqID, d.userID, d.requestDate, d.reference, d.status, td.docName, td.price
                     from users u 
-                    INNER JOIN docreq d on u.userID = d.userID
-                    INNER JOIN tbldocument td ON d.docID = td.docID
-                    WHERE d.reference = $ref
+                    JOIN docreq d on u.userID = d.userID
+                    JOIN tbldocument td ON d.docID = td.docID
+                    JOIN tblresidents r ON u.residentID = r.residentID
+                    WHERE d.reference = $ref AND d.Archive = 0
                     ORDER BY d.requestDate DESC;";
                     if ($result = $conn ->query($sql_query)) {
                         while ($row = $result -> fetch_assoc()) { 

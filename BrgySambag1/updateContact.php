@@ -17,7 +17,7 @@
         $sql = "UPDATE tblbrgycontact SET `ContactName`= '$newName', `ContactInfo` = '$newContact' WHERE BrgyContactID =".$id;
         if($result = mysqli_query($conn, $sql)){
             echo "<script> alert('Contact Updated')
-                history.go(-1)</script>";
+                history.go(-2)</script>";
         }else {
             echo "Something went wrong. Please try again later.";
        }}
@@ -39,7 +39,7 @@
         <form method="POST">
             <label for="lastname"> Name:</label>
             <input type="text" name="name" value="<?php echo $name?>"required><br>
-            <label for="sitio"> Price:</label>
+            <label for="sitio"> Contact No./Info.:</label>
             <input type="text" name="contact" value="<?php echo $contact?>"required><br>
             <button type="submit" name="submit"> UPDATE </button><br>
         </form>

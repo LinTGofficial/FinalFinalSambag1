@@ -55,7 +55,7 @@
                     ?>
                     <td class="tbl-actions">
                         <a href="updateContact.php?id=<?php echo $id; ?>" class="btn-green"><img src="drawable/edit.png" alt="edit"></a>
-                        <a onclick="javascript: return confirm('Confirm document deletion?');" href="deleteContact.php?id=<?php echo $id; ?>" class="btn-red"><img src="drawable/delete.png" alt="delete"></a>
+                        <a onclick="javascript: return confirm('Confirm contact deletion?');" href="deleteContact.php?id=<?php echo $id; ?>" class="btn-red"><img src="drawable/delete.png" alt="delete"></a>
                     </td>
                     <?php } ?>
                 </tr>

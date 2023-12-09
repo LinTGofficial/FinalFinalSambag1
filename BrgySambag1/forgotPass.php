@@ -34,7 +34,8 @@ if(isset($_POST["submitToken"])){
             echo "<script>alert('Email sent, Please check your email');
               window.location.href='login.php'</script>";
         } else {
-            echo 'Email sending failed: ' . $mail->ErrorInfo;
+            echo "<script>alert('Email not sent, $mail->ErrorInfo');
+            window.location.href='login.php';</script>";
         }
     }
 }

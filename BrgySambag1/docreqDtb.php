@@ -47,8 +47,7 @@
                 <tr>
                     <th class="font-poppins-regular" scope="col">ID</th>
                     <th class="font-poppins-regular" scope="col">NAME</th>
-                    <th class="font-poppins-regular" scope="col">HOUSE No.</th>
-                    <th class="font-poppins-regular" scope="col">SITIO</th>
+                    <th class="font-poppins-regular" scope="col">ADDRESS</th>
                     <th class="font-poppins-regular" scope="col">TOTAL</th>
                     <th class="font-poppins-regular" scope="col">REFERENCE NO.</th>
                     <th class="font-poppins-regular" scope="col">REQUEST DATE</th>
@@ -58,18 +57,20 @@
             <tbody class="tbl-data">
                 <?php 
                     if(empty($search)){
-                        $sql_query = "SELECT u.userID, concat(u.firstname, ' ', u.middleName, ' ', u.lastname) AS name, u.sitio, u.houseNo, d.userID, d.requestDate, d.reference, d.status, td.docName, d.totalByRef
+                        $sql_query = "SELECT u.userID, concat(r.fName, ' ' , r.mName, ' ', r.lName) AS name, r.sitio, r.houseNo_Street, d.docreqID, d.userID, d.requestDate, d.reference, d.status, td.docName, td.price
                         from users u 
-                        INNER JOIN docreq d on u.userID = d.userID
-                        INNER JOIN tbldocument td ON d.docID = td.docID
+                        JOIN docreq d on u.userID = d.userID
+                        JOIN tbldocument td ON d.docID = td.docID
+                        JOIN tblresidents r ON u.residentID = r.residentID
                         WHERE d.Archive = 0
                         GROUP BY reference
                         ORDER BY d.requestDate DESC;";
                     } else {
-                        $sql_query = "SELECT u.userID, concat(u.firstname, ' ', u.middleName, ' ', u.lastname) AS name, u.sitio, u.houseNo, d.userID, d.requestDate, d.reference, d.status, td.docName, d.totalByRef
+                        $sql_query = "SELECT u.userID, concat(r.fName, ' ' , r.mName, ' ', r.lName) AS name, r.sitio, r.houseNo_Street, d.docreqID, d.userID, d.requestDate, d.reference, d.status, td.docName, td.price
                         from users u 
-                        INNER JOIN docreq d on u.userID = d.userID
-                        INNER JOIN tbldocument td ON d.docID = td.docID
+                        JOIN docreq d on u.userID = d.userID
+                        JOIN tbldocument td ON d.docID = td.docID
+                        JOIN tblresidents r ON u.residentID = r.residentID
                         WHERE d.Archive = 0 AND d.reference LIKE '$search%'
                         GROUP BY reference
                         ORDER BY d.requestDate DESC;";
@@ -79,7 +80,7 @@
                             $DocreqID = $row['docreqID'];
                             $Id = $row['userID'];
                             $Name = $row['name'];
-                            $HouseNo = $row['houseNo'];
+                            $HouseNo = $row['houseNo_Street'];
                             $Sitio = $row['sitio'];
                             $RequestDate = $row['requestDate'];
                             $total = $row['totalByRef'];
@@ -90,8 +91,7 @@
                 <tr class="<?php echo $row_class; ?>">
                     <td class="text-gray-dark-3"> <?php echo $Id; ?></td>
                     <td class="text-gray-dark-3 font-poppins-semibold"><?php echo $Name; ?></td>
-                    <td class="text-gray-dark-3"><?php echo $HouseNo; ?></td>
-                    <td class="text-gray-dark-3"><?php echo $Sitio; ?></td>
+                    <td class="text-gray-dark-3"><?php echo $Sitio; ?>, <?php echo $HouseNo; ?></td>
                     <td class="text-gray-dark-3"><?php echo $total; ?></td>
                     <td class="text-gray-dark-3"><?php echo $Reference; ?></td>
                     <td class="text-gray-dark-3"><?php echo $RequestDate; ?></td>

@@ -11,7 +11,6 @@ if(!$_SESSION['privilege']){
 }else{
   include 'checkuser.php';
 }
-
 if(isset($_POST["submit"])){
   $name = $_POST["name"];
   $contact = $_POST["contactInfo"];
@@ -25,9 +24,10 @@ if(isset($_POST["submit"])){
   if($rowcount>0){
     echo"<script> alert('username is already taken'); </script>";
   }else{
-    $query = "INSERT INTO tblbrgycontact VALUES('', '$name', '$contact', 0)";
+    $query = "INSERT INTO tblbrgycontact VALUES('', '$name', '$contact')";
     mysqli_query($conn, $query);
-    echo"<script> alert('Document added successfully!'); </script>";
+    echo"<script> alert('Contact added successfully!');
+      window.location.href='contactDtb.php'</script>";
     }
   }
 ?>

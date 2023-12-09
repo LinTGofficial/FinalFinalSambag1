@@ -50,7 +50,7 @@
             </thead>
             <tbody class="tbl-data">
                 <?php 
-                    $sql_query = "SELECT u.userID, CONCAT(u.firstname, ' ', u.lastname) AS name, u.sitio, u.houseNo, d.docreqID, d.requestDate, d.reference, d.status, td.docName, td.price
+                    $sql_query = "SELECT u.userID, d.requestDate, d.reference, d.status, td.docName, td.price, d.docreqID
                     FROM users u
                     INNER JOIN docreq d ON u.userID = d.userID 
                     INNER JOIN tbldocument td ON d.docID = td.docID

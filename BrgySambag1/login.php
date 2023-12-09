@@ -2,6 +2,7 @@
 //checking database connection
 require 'connection.php';
 include 'checkuser.php';
+session_destroy();
 
 if(isset($_POST["submit"])){
 
@@ -9,7 +10,7 @@ if(isset($_POST["submit"])){
   $pass = $_POST["pass"];
 
   //Look for user
-  $sql = ("SELECT * FROM users WHERE email='$email'");
+  $sql = ("SELECT * FROM users u JOIN tblresidents r ON  u.residentID = r.residentID WHERE u.email='$email' AND r.archive = 0 AND u.Archive = 0");
   $result = mysqli_query($conn, $sql);
   $acc = mysqli_fetch_array($result, MYSQLI_ASSOC);
   if($email){
@@ -74,7 +75,7 @@ if(isset($_POST["submit"])){
             <a class="text-primary" style="float:right" href="forgotPass.php">Forgot Password?</a>
           </div>
           <button class="btn-primary text-white" type="submit" name="submit"> Log In </button><br>
-          <p> Not yet registered? <a href="register.php"> REGISTER HERE </a></p>
+          <p> Not yet registered? <a href="registerVIN.php"> REGISTER HERE </a></p>
         </form>
     </div>
 </div>

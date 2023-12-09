@@ -7,22 +7,16 @@
     $result = mysqli_query($conn, $sql);
     $acc = mysqli_fetch_array($result, MYSQLI_ASSOC);
 
-    $lastname = $acc["lastname"];
-    $middlename = $acc["middleName"];
-    $firstname = $acc["firstname"];
     $email = $acc["email"];
     $password = $acc["password"];
 
     if(isset($_POST["submit"])){
-        $newlastname = $_POST["lname"];
-        $newmiddlename = $_POST["mname"];
-        $newfirstname = $_POST["fname"];
         $newemail = $_POST["email"];
         $newpass = $_POST['pass'];
 
         if($newpass == ""){
             //without password reset
-            $sql = "UPDATE users SET lastname= '$newlastname',firstname= '$newfirstname', `middleName`= '$newmiddlename', `email` = '$newemail' WHERE userID =" .$userId;
+            $sql = "UPDATE users SET `email` = '$newemail' WHERE userID =" .$userId;
             if($result = mysqli_query($conn, $sql)){
                 echo "<script> alert('Admin Updated');
                     window.location.href='adminDtb.php';</script>";
@@ -33,7 +27,7 @@
             if($newpass == $_POST['conPass']){
                 if(strlen($newpass) >= 8){
                     //with password reset
-                    $sql = "UPDATE users SET lastname= '$newlastname',firstname= '$newfirstname', `middleName`= '$newmiddlename', `email` = '$newemail', `password` = md5('$newpass') WHERE userID =" .$userId;
+                    $sql = "UPDATE users SET `email` = '$newemail', `password` = md5('$newpass') WHERE userID =" .$userId;
                     if($result = mysqli_query($conn, $sql)){
                         echo "<script> alert('Admin Updated');
                             window.location.href='adminDtb.php';</script>";
@@ -66,11 +60,7 @@
     <div class="register">
       <h1>EDIT</h1>
         <form method="POST">
-        <label> Name:</label>
-            <input type="text" name="fname" value="<?php echo $firstname?>" placeholder="First Name" required><br>
-            <input type="text" name="mname" value="<?php echo $middlename?>" placeholder="Middle Name" required><br>
-          <input type="text" name="lname" value="<?php echo $lastname?>" placeholder="Last Name" required><br>
-          <label> Email:</label>
+        <label> Email:</label>
           <input type="text" name="email" value="<?php echo $email?>" placeholder="Last Name" class="mb-2" required><br>
         <label>Change Password(optional):</label>
           <input type="password" name="pass" id="password" placeholder="Password must be at least 8 characters long"><br>

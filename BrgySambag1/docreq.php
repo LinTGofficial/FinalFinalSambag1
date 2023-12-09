@@ -2,24 +2,15 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-//requirements
 require 'connection.php';
 require 'checkuser.php';
 
 if($_SESSION['loggedin']){
-  $id = $_SESSION['id'];
-  $verifysql = "SELECT * FROM users WHERE `userID` = '$id'";
-  $verifyresult = mysqli_query($conn, $verifysql);
-  $result = mysqli_fetch_array($verifyresult);
-  if($result["verified"] == "1"){
     if(isset($_SESSION['privilege']) && $_SESSION['privilege']){
       echo "<script>window.location.href='index.php';</script>";
     }else{
 
     }
-  }else{
-    echo "<script>window.location.href='notverified.php?id=$id';</script>";
-  }
 }else{ 
   header('Location: login.php');
 }
