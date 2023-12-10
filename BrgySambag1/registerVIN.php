@@ -5,7 +5,7 @@
     if(isset($_POST['submit'])){
         $vin = $_POST['vin'];
 
-        $sql = "SELECT * FROM tblresidents WHERE VIN = '$vin'";
+        $sql = "SELECT * FROM tblresidents WHERE VIN = '$vin' AND archive = 0";
         $query = mysqli_query($conn, $sql);
         $count = mysqli_num_rows($query);
         if($count == 0){
@@ -15,8 +15,19 @@
             echo "<script> alert('The VIN entered is already registered');
                 history.go(-1);</script>";
         } else {
-            $_SESSION['vin'] = $vin;
-            echo "<script>window.location.href='register.php';</script>";
+            $result = mysqli_fetch_array($query, MYSQLI_ASSOC);
+            $residentID = $result['residentID'];
+            $checksql = "SELECT * FROM users WHERE residentID = '$residentID'";
+            $checkquery = mysqli_query($conn, $checksql);
+            $checkcount = mysqli_num_rows($checkquery);
+
+            if($checkcount >= 1 ){
+                echo "<script> alert('The VIN entered is already registered, please visit the barangay hall for more info...');
+                    history.go(-1);</script>";
+            } else {
+                $_SESSION['vin'] = $vin;
+                echo "<script>window.location.href='register.php?res=$residentID';</script>";
+            }
         }
     }
 ?>

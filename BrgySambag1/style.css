@@ -131,6 +131,7 @@
     align-items:center;
     background: white;
     box-shadow: 1px 3px 5px rgba(0,0,0,0.1);
+    font-size: 15px;
     z-index: 2;
   }
 
@@ -161,7 +162,7 @@
 
   .options a img {
     object-fit: cover;
-    height: 30px;
+    height: 20px;
     width: auto;
     margin-right: 10px;
   }
